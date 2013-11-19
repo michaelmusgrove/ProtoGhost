@@ -1,0 +1,153 @@
+#ProtoGhost Documentation by web design POP, v 1.0
+##ProtoGhost Theme Documentation and Help File
+
+Created 10/19/2013
+By: Michael Musgrove
+Website: http://MichaelMusgrove.com
+Email: musgrove@webdesignpop.com
+Twitter: @webdesignpop
+
+##Thank you so much for purchasing my theme. If you have any questions that are beyond the scope of this help file, please feel free to email me via my user page contact form [here](http://themeforest.net/user/musgrove).
+
+Thanks a million!
+
+=======================================================================================================================
+Index:
+======
+* HTML structure
+* CSS files and structure
+* JavaScript
+* How to modify ProtoGhost
+* Images
+* Sources and credits
+* GNU Licensing
+===========================
+
+* HTML Structure: The HTML structure uses partials, which includes a header file and a footer file, to keep things tidy. The 'partials' folder is in the main theme folder.
+
+=======================================================================================================================
+
+* CSS files and structure: As explained in more detail below, ProtoGhost utilizes LESS, and includes a minified `styles.css` file.
+
+=======================================================================================================================
+
+*JavaScript: The JavaScript folder includes an index.js file, which is the main JavaScript file for ProtoGhost behavior.
+
+*Also included is fitVids.js, which provides responsive viewing of automatically-sizing, full-content-width videos from YouTube, Vimeo, Blip, KickStarter, Viddler, and more.
+
+=======================================================================================================================
+
+*How to modify and Technicals details:
+
+##Installation of the ProtoGhost Theme:
+=======================================
+The simplest way to install a new theme into your Ghost installation is via FTP/SFTP. If you're not familiar with how to use FTP/SFTP, [FileZilla](http://filezilla.com) is a good free FTP GUI that is well-documented. Your host should also be able to help you set up this capability.
+
+Navigate to Ghost/content/themes/ in your remote Ghost installation and put the unzipped theme folder into your themes folder.
+
+####Note: At the moment Ghost isn’t able to detect new files & folders appearing under the /themes folder whilst it’s running, so you need to restart Ghost. Once Ghost has found your theme is present, you shouldn’t need to restart it again when making changes. If things ever do appear to get a bit stuck, switching back to Casper and back to your new theme should be sufficient.
+
+How to restart Ghost depends on how you’re running it. If you’re using npm start then press Ctrl+C to stop Ghost, and then run npm start again.
+
+If you’re running Ghost using forever something like forever start index.js then you would restart it using forever restart index.js.
+
+Effectively, whatever tool you’re using to run Ghost should have a way to start & stop, and many of the tools have a restart command.
+
+##Changing the Logo and Cover:
+==============================
+Changing out the images for the Logo and Cover are done in the Settings tab on the back end of your Ghost website. You can acceess it by going to http://your-ghost-url.com/ghost/ From there the upload process should be familiar.
+
+##Changing the text in the footer:
+==================================
+Navigate to the `footer.hbs` file. Changes may be made here via HTML and mustache.
+
+##Changing the Main Color Palatte:
+==================================
+LESS is used, so you'll need a compiler if your IDE doesn't have one. Alternately, you can run the CSS in `style.css` through a decompiler, and edit it as you would any `.css` file
+
+Navigate to the `variables.less` file. The colors as shipped are as follows:
+@color_01: #fffff0; //ivory
+@color_02: #e5e5d8; //slightly darker than ivory
+@color_03: #bfbfb4; //shadow color of banner
+@color_04: #40403c; //darkest shade
+@color_05: #7f7f78; //next-darkest shade
+
+These may be customized here and via the magic of LESS, will be distributed around the site as prescribed.
+
+##To customize the Social Media Icon Links:
+===========================================
+Navigate to lines 20,21 and 22 in the `post.hbs` file. The urls in each of these lines should be changes to your social media account URLs. Twitter, Facebook and Google+ are represented.
+
+Hooking your Disqus account up:
+===============================
+Find Line 44 in the `post.hbs` file: "var disqus_shortname = 'ghosttheme'; // required: replace ghosttheme with your forum shortname." Change `ghosttheme` to your Disqus shortname, available in your Disqus dashboard settings.
+
+##Changing the Time Display and Tags Separator:
+===============================================
+The Time displayed is handled by momentjs.com and the instructions for different displays is available at [momentjs.com[(http://momentjs.com)
+
+You'll need to target Line 7 in `index.hbs`: `<time class="date_proto" datetime="{{date format="MMMM Do YYYY, h:mm:ss a"}}" itemprop="datePublished">{{date format="MMMM Do YYYY, h:mm:ss a"}}</time>`
+
+The Tag Separator (•) may also be changed on Line 13 in this file.
+
+##Adding JavaScipt:
+===================
+`default.hbs` is the file where you'll find the footer of the site. This is the recommended place to put many of your scripts that don't need to be loaded immediately on page load. Add them after the `{{ghost_foot}}` tag on line 23.
+
+##To change the font:
+=====================
+If, for some reason, you want to change the font, you'll need to edit 2 files: the `variables.less` file and `default.hbs` file. Once you've chosen the Google fonts you want, replace the line after the `{{! Styles }}` tag in `Default.hbs`, and then make sure to specify those fonts in `Variables.less` on lines 5 and 7. The font weights that are loaded with the file are 300 and 400 for the Oxygen font and and 700 for LifeSavers, the unique headline and title font.
+
+##To customize the menu:
+========================
+in `header.hbs` find the lines at the top which begin:
+`<!--Main Menu settings-->
+<div id='cssmenu'>
+<ul>
+   <li class='active'><a href='index.html' target='_blank'><span>Home</span></a></li>
+   <li><a href='#0'><span>Blog</span></a></li>
+   <li><a href='#0'><span>About</span></a></li>
+   <li class='has-sub'><a href='#0'><span>Image Gallery</span></a>
+      <ul>
+         <li><a href='#0'><span>Sub Item</span></a></li>
+         <li class='last'><a href='#0'><span>Sub Item</span></a></li>
+      </ul>
+   </li>
+   <!--submenu
+   <li class='has-sub'><a href='#'><span>Submenu 2</span></a>
+      <ul>
+         <li><a href='#0'><span>Sub Item</span></a></li>
+         <li class='last'><a href='#0'><span>Sub Item</span></a></li>
+      </ul>
+   </li>
+   end submenu-->
+   <li class='last'><a href='#0'><span>Contact</span></a></li>
+</ul>
+</div>
+<!--end menu-->`
+
+* Change the Titles (Home,Blog,About,Image Gallery, Sub Item(s)(if/as necessary)
+* Change the hrefs from "#0" to the URL you want each menu item directed to.
+* Save the file
+=================================================================================================================
+
+Once again, thank you so much for purchasing this theme. As I said at the beginning, I'd be glad to help you if you have any questions relating to this theme. No guarantees, but I'll do my best to assist. If you have a more general question relating to the themes on ThemeForest, you might consider visiting the forums and asking your question in the "Item Discussion" section.
+
+=======================================================================================================================
+
+* Images: All images free to use, because I either created and own them(--and I'm flattered when people use my stuff), or else they're public domain.
+
+=======================================================================================================================
+
+* Sources and Credits: I would like to thank and give major credit and props to the following: Google Fonts for the custom fonts; Chris Coyier and Paravel for fitVids.js; icomoon for the custom icon fonts.
+
+=======================================================================================================================
+
+* GNU make is fully documented in the GNU Make manual, which is contained
+in this distribution as the file make.texinfo.  You can also find
+on-line and preformatted (PostScript and DVI) versions at the FSF's web
+site.  There is information there about ordering hardcopy documentation.
+
+  http://www.gnu.org/
+  http://www.gnu.org/doc/doc.html
+  http://www.gnu.org/manual/manual.html

@@ -1,0 +1,21 @@
+{{!< default}}moment().format(
+{{> header}}
+<main class="main_proto" role="main">
+{{#foreach posts}}
+<article class="article_proto" role="article" itemscope itemtype="http://schema.org/Article">
+<header class="postheader_proto">
+<time class="date_proto" datetime="{{date format="MMMM Do YYYY, h:mm:ss a"}}" itemprop="datePublished">{{date format="MMMM Do YYYY, h:mm:ss a"}}</time>
+<h1 class="posttitle_proto" itemprop="headline"><a href="{{{url}}}" rel="bookmark">
+{{title}}</a></h1>
+</header>
+<div class="postcontent_proto" itemprop="articleBody"></div>
+{{#if tags}}
+<div class="posttags_proto">Tags: {{tags separator=" • "}}</div>
+{{/if}}
+</article>
+{{/foreach}}
+{{#if pagination}}
+<div class="pagination_proto">{{{pagination}}}</div>
+{{/if}}
+</main>
+{{> footer}}

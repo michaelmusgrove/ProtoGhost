@@ -1,0 +1,63 @@
+{{!< default}}
+{{> header}}
+<main class="main_proto" role="main">
+{{#post}}
+<article class="article_proto" role="article" itemscope itemtype="http://schema.org/Article">
+<header class="postheader_proto">
+<time class="date_proto" datetime="{{date format="DD-MM-YYYY"}}" itemprop="datePublished">{{date format='dddd DD MMM YYYY'}}</time>
+<h1 class="posttitle_proto" itemprop="headline">{{title}}</h1>
+</header>
+<div class="postcontent_proto" itemprop="articleBody">
+{{content}}
+</div>
+{{#if tags}}
+<div class="posttags_proto">
+Tags: {{tags separator=" • "}}
+</div>
+{{/if}}
+    <div class="sharepost_proto">
+    <h4 class="share_proto">Share this post: &nbsp;</h4>
+    <a class="share_proto icon-twitter" target="_blank" href="http://twitter.com/webdesignpop={{title}}&url={{url absolute="true"}}"><span class="hidethis_proto">Twitter</span></a>
+    <a class="share_proto icon-facebook" target="_blank" href="http://www.facebook.com/webdesignpop={{url absolute="true"}}"><span class="hidethis_proto">Facebook</span></a>
+    <a class="share_proto icon-gplus" target="_blank" href="https://plus.google.com/u/0/117907608414650541261/posts={{url absolute="true"}}"><span class="hidethis_proto">Google+</span></a>
+    </div>
+        {{#if author}}
+        <footer class="postfooter_proto">
+        <address itemscope itemtype="http://schema.org/Person">
+        {{#if author.image}}
+        <div class="authorimage_proto"><img src="{{author.image}}" itemprop="image" /></div>
+        {{/if}}
+        <h4 class="authorname_proto"><span itemprop="author">{{author.name}}</span></h4>
+        {{#if author.website}}
+        <div class="authorwebsite_proto"><a href="{{author.website}}" itemprop="url">{{author.website}}</a></div>
+        {{/if}}
+        </address>
+        <div class="authorbio_proto">
+        <p>{{author.bio}}</p>
+        </div>
+        </footer>
+        {{/if}}
+</article>
+<div><hr /></div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'ghosttheme'; // required: replace ghosttheme with your forum shortname
+    var disqus_identifier = '{{post.id}}'; // make sure to use the post.id as an identifier, otherwise disqus will use the pages url per default, which might be problematic...
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+{{/post}}
+{{#if pagination}}
+<div class="pagination_proto">
+{{{pagination}}}
+</div>
+{{/if}}
+</main>
+{{> footer}}
